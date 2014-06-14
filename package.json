@@ -1,0 +1,43 @@
+{
+  "name": "levelweb",
+  "version": "0.4.1-1",
+  "description": "A front end for leveldb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "levelweb": "./bin/levelweb"
+  },
+  "dependencies": {
+    "ws": "~0.4.25",
+    "levelup": "0.8.0",
+    "event-stream": "~3.0.12",
+    "mime": "~1.2.9",
+    "moment": "~2.0.0",
+    "keygrip": "~0.2.2",
+    "cookies": "~0.3.6",
+    "bcrypt": "~0.7.5",
+    "node-uuid": "~1.4.0",
+    "optimist": "~0.3.5",
+    "multilevel": "~3.0.0",
+    "browserify": "~2.13.2",
+    "util-inspect": "^0.1.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hij1nx/levelweb.git"
+  },
+  "author": {
+    "name": "hij1nx"
+  },
+  "license": "MIT",
+  "readme": "# SYNOPSIS\nA LevelDB GUI. Includes simple data visualization tools. See also the [`commandline version`][99].\n\n# USAGE\n\n## Installation\nLevelweb can be run as a process or used as a module on top of your own \nLevelDB-based database.\n\n```bash\nnpm install levelweb -g\n```\n\n## Create an initial user account\nLevelweb supports encrypted login over https\n\n```bash\nlevelweb -u admin -p password\n```\n\n## Connect to a local database \nLevelweb can be a server and accept input from simple tcp, tls or [rpc][0].\n\n```bash\nlevelweb ./test/data\n```\n\n## Connect to a remote database\nLevelweb can be a client and connect to a network enabled [Levelup][1] instance.\n\n```bash\nlevelweb --client 9099 --host 192.168.0.1\n```\n\n## Log into the user interface\n![screenshot](/screenshots/screenshot0.png)\n\n## Communicate with the database\n\n```js\nvar client = require('multilevel').client();\nvar net = require('net');\n\nvar myPort = 9099;\n\nclient.pipe(net.connect(myPort)).pipe(client)\n\n// asynchronous methods\nclient.put('foo', 'bar', function (err) { \n  if (!err) { /* the value is now in the database */ }\n});\n\n// streams\nclient.createReadStream().on('data', function () { /* */ });\n```\n\n# CLI PARAMETERS\n\n## User Management\n```\n-u <username>   specify a username to create or check for\n-p <password>   specify a password for the given username\n```\n\n## User Interface\n```\n--https <n>     a port for the user-interface to run on\n--host <h>      ip or hostname for the web server if not localhost\n```\n\n## Data\n```\n--protocol <p>  specify the protocol where `p` is `tls` or `tcp`\n--client <n>    the port to connect to as a client, `n` is a port\n--server <n>    the port to make available as a server, `n` is a port\n```\n\nLevel web also accepts new-line-delimited data. Each line should be an object \nthat contains a key and value, like `{ key: 'foo', value: 'bar' }`.\n\n```\n--newline       alternatively receive newline delimited streams.\n```\n\nIf you use `tls` as your protocol, you'll need to supply the server's \ncertificate (you can copy this from the UI's settings tab) and generate a \nprivate key with a self signed certificate.\n\n```bash\nopenssl genrsa -out client-key.pem 1024\nopenssl req -new -key client-key.pem -out client-csr.pem\nopenssl x509 -req -in client-csr.pem -signkey client-key.pem -out client-cert.pem\n```\n\n# VISUALIZATIONS\n![screenshot](/screenshots/screenshot.png)\n\n## Treemap\nProvides a zoomable tree-map of the currently tagged keys. Treemaps display \nhierarchical (tree-structured) data as a set of nested rectangles. Each branch\nof the tree is given a rectangle, which is then tiled with smaller rectangles \nrepresenting sub-branches. A leaf node's rectangle has an area proportional to \na specified dimension on the data. Often the leaf nodes are colored to show a \nseparate dimension of the data.\n\nWhen the color and size dimensions are correlated in some way with the tree \nstructure, one can often easily see patterns that would be difficult to spot in \nother ways, such as if a certain color is particularly relevant. A second \nadvantage of treemaps is that, by construction, they make efficient use of \nspace. As a result, they can legibly display thousands of items on the screen \nsimultaneously.\n\n![screenshot](/screenshots/screenshot2.png)\n\n## Stacked Bar Chart\n\n![screenshot](/screenshots/screenshot5.png)\n\n### Stacked Area Chart\nArea charts are used to represent cumulated totals using numbers or percentages \n(stacked area charts in this case) over time. Use the area chart for showing \ntrends over time among related attributes. The area chart is like the plot chart\nexcept that the area below the plotted line is filled in with color to indicate \nvolume.\n\nWhen multiple attributes are included, the first attribute is plotted as a line \nwith color fill followed by the second attribute, and so on.\n\n![screenshot](/screenshots/screenshot3.png)\n![screenshot](/screenshots/screenshot4.png)\n\n# DEVELOPER NOTES\n\n## Making changes\n```\n-b              compile all of the addon css and html\n```\n\n### How the code is organized\n\n### `bin`\nContains an executable file responsible for starting the app and passing \nparameters to the levelweb module. Yes, you can add levelweb on top of your \ndatabase project.\n\n### `lib`\nContains all of the server code. The index file is the point of entry and \nhandles static file serving as well as communication to and from the server.\n\n[0]:https://github.com/juliangruber/multilevel\n[1]:https://github.com/rvagg/node-levelup\n[99]:https://github.com/hij1nx/lev\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/hij1nx/levelweb/issues"
+  },
+  "homepage": "https://github.com/hij1nx/levelweb",
+  "_id": "levelweb@0.4.1-1",
+  "_from": "levelweb@"
+}
