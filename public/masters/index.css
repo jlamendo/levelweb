@@ -168,7 +168,6 @@ header nav ul li:first-of-type {
  */
 
 .main-container {
-
   position: absolute;
   top: 100px;
   bottom: 10px;
@@ -198,7 +197,6 @@ header nav ul li:first-of-type {
   border: 1px solid #ddd;
 
   overflow: scroll;
-
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -429,10 +427,6 @@ p {
 .bar {
   fill: steelblue;
 }
-
-/*
- * Key Lists
- */
 
 #keyListContainer {
 

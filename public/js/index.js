@@ -5,7 +5,6 @@ require('./lib/jsonlint')
 require('./lib/codemirror-3.1/addon/lint/lint')
 require('./lib/codemirror-3.1/addon/lint/json-lint')
 require('./lib/codemirror-3.1/addon/format/formatting.js')
-
 require('./lib/d3/d3.v3.min')
 require('./lib/d3/cubism.v1')
 

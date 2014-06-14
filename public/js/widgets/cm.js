@@ -86,7 +86,6 @@ editor.on('focus', function() {
 var saveBounce
 editor.on('change', function(cm, change) {
 
-  console.log(JSONfn.stringify(eval('(' + editor.doc.getValue().split("module.exports = ")[1] + ')')))
   var value = {
     key: keyList.val(),
     value: JSONfn.stringify(eval('(' + editor.doc.getValue().split("module.exports = ")[1] + ')'))
@@ -94,6 +93,7 @@ editor.on('change', function(cm, change) {
 
   clearTimeout(saveBounce)
   saveBounce = setTimeout(function() {
+
 
     if (cm.doc.isClean() === false) {
 
@@ -104,5 +104,6 @@ editor.on('change', function(cm, change) {
     }
 
   }, 16)
+
   window.editor = editor;
 })
